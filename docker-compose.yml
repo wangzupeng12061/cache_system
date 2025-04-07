@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  data_center:
+    build:
+      context: ./data_center
+      dockerfile: Dockerfile
+    container_name: data_center
+    ports:
+      - "9090:80"  # 映射容器 80 端口到宿主机 9090
+    networks:
+      - cache_net
+
+  edge:
+    build:
+      context: ./edge
+      dockerfile: Dockerfile
+    container_name: edge
+    ports:
+      - "8080:80"  # 映射容器 80 端口到宿主机 8080
+    depends_on:
+      - data_center
+    networks:
+      - cache_net
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client
+    environment:
+      - EDGE_SERVER_URL=http://edge:80  # 指定边缘缓存服务地址为 edge 服务容器
+    depends_on:
+      - edge
+    networks:
+      - cache_net
+    command: ["python", "src/main.py"]
+
+networks:
+  cache_net:
+    driver: bridge
