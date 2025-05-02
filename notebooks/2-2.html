@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mermaid 时间线（黑白灰 + 宋体）</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#ffffff",
+        primaryTextColor: "#000000",
+        primaryBorderColor: "#888888",
+        lineColor: "#333333",
+        fontFamily: "STSong, 'Songti SC', 'PingFang SC', serif",
+        background: "#ffffff"
+      }
+    });
+  </script>
+
+  <style>
+    .mermaid {
+      font-family: "STSong", "Songti SC", "PingFang SC", serif;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mermaid">
+timeline
+  section 启动阶段
+    T0 : 初始部署 📦 : 无反馈策略
+  section 学习初期
+    T1 : 收集用户反馈 📝 : 命中率浮动 📉
+    T2 : 启动满意度评分 ❤️ : 引入伪标签训练
+  section 策略优化中
+    T3 : 缓存热度分析 🔥 : 替换策略调整 ♻️
+    T4 : 内容压缩优化 📦 : 多模态生成精调 🎨
+  section 稳定收敛期
+    T5 : 命中率提升 📈 : 用户满意度上升 😀
+    T6 : 策略周期更新 🔁 : 模型轻量部署 ⬇️
+</div>
+
+</body>
+</html>
